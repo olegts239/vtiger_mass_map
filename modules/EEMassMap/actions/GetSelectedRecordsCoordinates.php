@@ -40,7 +40,7 @@ class EEMassMap_GetSelectedRecordsCoordinates_Action extends Vtiger_Action_Contr
                 $address[$key] = Vtiger_Util_Helper::getDecodedValue($wsEntity[$value]);
             }
 
-            if(empty($address['street']) && empty($address['city']) && empty($address['country'])) continue;
+            if(empty($address['street']) && empty($address['city']) && empty($address['state'])  && empty($address['country'])) continue;
 
 			$opts = array('http'=>array('header'=>"User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.146 Safari/537.36\r\n"));
 			$context = stream_context_create($opts);
@@ -68,7 +68,7 @@ class EEMassMap_GetSelectedRecordsCoordinates_Action extends Vtiger_Action_Contr
     }
 
     /**
-     * Get location values for: street, city, country
+     * Get location values for: street, city, state, country
      *
      * @param $module
      * @return array
@@ -79,6 +79,7 @@ class EEMassMap_GetSelectedRecordsCoordinates_Action extends Vtiger_Action_Contr
                 return array(
                     'street' => 'mailingstreet',
                     'city' => 'mailingcity',
+                    'state' => 'mailingstate',
                     'country' => 'mailingcountry'
                 );
                 break;
@@ -86,6 +87,7 @@ class EEMassMap_GetSelectedRecordsCoordinates_Action extends Vtiger_Action_Contr
                 return array(
                     'street' => 'lane',
                     'city' => 'city',
+                    'state' => 'state',
                     'country' => 'country'
                 );
                 break;
@@ -93,6 +95,7 @@ class EEMassMap_GetSelectedRecordsCoordinates_Action extends Vtiger_Action_Contr
                 return array(
                     'street' => 'bill_street',
                     'city' => 'bill_city',
+                    'state' => 'bill_state',
                     'country' => 'bill_country'
                 );
                 break;
